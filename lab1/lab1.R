@@ -71,6 +71,14 @@ correlation <- cor(hospital_data$age,hospital_data$fat)
 
 # EXERCISE 1.6
 
+pres.age <- c(57, 61, 57, 57, 58, 57, 61, 54, 68, 51, 49, 64, 50, 48, 65, 52, 56, 46, 54, 49, 51, 47, 55, 55, 54, 42, 51, 56, 55, 51, 54, 51, 60, 61, 43, 55, 56, 61, 52, 69, 64, 46, 54, 47)
+
+hist(pres.age)
+
+    #outliers
+
+boxplot(pres.age)
+
 
 # EXERCISE 1.7
 
@@ -79,6 +87,29 @@ correlation <- cor(hospital_data$age,hospital_data$fat)
 
 
 # EXERCISE 1.9
+
+queen <- data.frame(
+  year = c(1994, 1995, 1996, 1997, 1998),
+  passengers = c(34567, 34678, 36789, 38102, 39024),
+  stringsAsFactors = FALSE
+)
+
+hist(queen$passengers,
+     xlab = "Passengers",
+     freq = TRUE,
+     probability = FALSE,
+     border = "blue",
+     col="green",
+     breaks = 5)
+
+hist(queen$passengers,
+     xlab = "Passengers",
+     freq = NULL,
+     probability = TRUE,
+     border = "green",
+     col="red")
+
+
 
 
 # EXERCISE 1.10
