@@ -4,16 +4,19 @@
 colors <- factor(c("Red", "Blue", "Orange", "Yellow"))
 
 pattern <- list(sample(colors, 500, replace = TRUE))
-pattern1 <-data.frame(pattern)
+
+pattern1 <- data.frame(pattern)
 pattern2 <- as.matrix(pattern)
 
 colors1 <- as.list(colors)
 
+install.packages("rlist")
+expand.colors <- list.append(x = pattern, y = colors)
+expand.colors1 <- list.expand()
 
 # EXERCISE 1.2
 
 data(cars)
-
 cars2 <- data.frame(cars)
 
 cars2$speed <- set_units(cars2$speed,m/s)
@@ -68,6 +71,11 @@ correlation <- cor(hospital_data$age,hospital_data$fat)
 
 # EXERCISE 1.5
 
+age.out <- boxplot(age, plot=FALSE)$out
+
+speed.out <- boxplot(cars2$speed, plot=FALSE)$out
+dist.out <- boxplot(cars$dist, plot=FALSE)$out
+
 
 # EXERCISE 1.6
 
@@ -75,15 +83,29 @@ pres.age <- c(57, 61, 57, 57, 58, 57, 61, 54, 68, 51, 49, 64, 50, 48, 65, 52, 56
 
 hist(pres.age)
 
-    #outliers
+pres.out <- boxplot(pres.age, plot=FALSE)$out
 
 boxplot(pres.age)
 
 
 # EXERCISE 1.7
 
+winter_olympics <- data.frame(
+  year = c(1992, 1994, 1998, 2002, 2006, 2010),
+  location = c("Albertville", "Lillehammer", "Nagano", "Salt Lake City", "Torino" ,"Vancouver"),
+  disciplines = c(57, 61, 68, 78, 84, 86),
+  head = c(" F. Mitterand", "King Harald V", "Emperor Akihito", "President G.Bush", "President C. Ciampi" ,"Governor General M.Jean")
+)
+
+head_states <- subset(winter_olympics, select = c("head"))
+
+head_states2 <- subset(winter_olympics, disciplines > 78, select = c("head"))
+
+head_states3 <- subset(winter_olympics, disciplines > mean(winter_olympics$disciplines), select = c("head"))
+
 
 # EXERCISE 1.8
+
 
 
 # EXERCISE 1.9
@@ -109,7 +131,36 @@ hist(queen$passengers,
      border = "green",
      col="red")
 
-
+lines(density(queen$passenger,na.rm=T),col="red",lwd=4)
 
 
 # EXERCISE 1.10
+
+install.packages("dplyr")
+library("dplyr")
+
+data(iris)
+iris2 <- c(filter(iris[140:150, 1:4 ]))
+unlist(iris2,recursive = TRUE, use.names=FALSE)
+
+type <- c("Sepal Length", "Sepal Width", "Petal Length", "Petal Width")
+
+for (i in names(iris2))
+{
+  hist(iris2[[i]],
+       breaks = 8,
+       xlab = paste(i),
+       main = paste("Histogram of",i))
+  lines(density(iris2[[i]],na.rm=T),col="red",lwd=4)
+}
+
+for (i in names(iris2))
+{
+  pie(iris2[[i]], main = names(iris2[[i]]))
+}
+
+for (i in names(iris2))
+{
+  boxplot(iris2[[i]])
+}
+
