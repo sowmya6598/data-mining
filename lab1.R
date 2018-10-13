@@ -143,8 +143,6 @@ data(iris)
 iris2 <- c(filter(iris[140:150, 1:4 ]))
 unlist(iris2,recursive = TRUE, use.names=FALSE)
 
-type <- c("Sepal Length", "Sepal Width", "Petal Length", "Petal Width")
-
 for (i in names(iris2))
 {
   hist(iris2[[i]],
